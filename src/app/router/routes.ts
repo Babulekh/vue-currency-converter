@@ -2,20 +2,22 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import MainView from '@/pages/MainView'
 
+import { routeNames } from '@/shared/config/config'
+
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Main',
+    name: routeNames.main,
     component: MainView,
     children: [
       {
         path: '',
-        name: 'Home',
+        name: routeNames.home,
         component: () => import('@/pages/HomeView'),
       },
       {
-        path: '',
-        name: 'Home',
+        path: 'convert',
+        name: routeNames.converter,
         component: () => import('@/pages/ConvertView'),
       },
     ],
