@@ -1,9 +1,9 @@
-import type { CurrenciesExcahngeRates } from '../model'
+import type { CurrenciesExchangeRates } from '../model/types'
 
-export const getCurrenciesExchangeRates = async (): Promise<CurrenciesExcahngeRates> => {
+export const getCurrenciesExchangeRates = async (): Promise<CurrenciesExchangeRates> => {
   const currenciesExcahngeRatesDTO = await fetch('https://status.neuralgeneration.com/api/currency')
 
-  const currenciesExcahngeRates: CurrenciesExcahngeRates = await currenciesExcahngeRatesDTO.json()
+  const currenciesExcahngeRates: CurrenciesExchangeRates = await currenciesExcahngeRatesDTO.json()
 
   return currenciesExcahngeRates
 }
