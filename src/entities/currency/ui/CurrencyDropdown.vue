@@ -1,15 +1,14 @@
 <template>
   <VCombobox
     :options="supportedCurrenciesOptions"
-    v-model:selected-option-id="currentSelectedCurrency" />
+    v-model:selected-option-id="selectedCurrency" />
 </template>
 
 <script setup lang="ts">
+import type { Currency } from '@/shared/config'
 import type { Option } from '@/shared/ui/combobox'
 
-import { storeToRefs } from 'pinia'
 import { supportedCurrencies } from '@/shared/config'
-import { useCurrencyStore } from '@/entities/currency'
 
 import VCombobox from '@/shared/ui/combobox/VCombobox.vue'
 
@@ -18,5 +17,5 @@ const supportedCurrenciesOptions: Array<Option> = supportedCurrencies.map((curre
   label: currencyName
 }))
 
-const { currentSelectedCurrency } = storeToRefs(useCurrencyStore())
+const selectedCurrency = defineModel<Currency>('selectedCurrency', { default: 'RUB' })
 </script>

@@ -74,6 +74,7 @@ onClickOutside(dropdownElement, closeDropdown)
   padding: 4px;
   position: absolute;
   top: calc(100% + 4px);
+  z-index: 1;
   border: 1px solid gray;
   border-radius: 8px;
   background: white;

@@ -1,13 +1,16 @@
 <template>
   <header>
     <HeaderMenu />
-    <CurrencyDropdown />
+    <CurrencyDropdown v-model:selected-currency="currentSelectedCurrency" />
   </header>
 </template>
 
 <script setup lang="ts">
-import CurrencyDropdown from './CurrencyDropdown.vue'
+import { CurrencyDropdown, useCurrencyStore } from '@/entities/currency'
 import HeaderMenu from './HeaderMenu.vue'
+import { storeToRefs } from 'pinia'
+
+const { currentSelectedCurrency } = storeToRefs(useCurrencyStore())
 </script>
 
 <style scoped lang="scss">
