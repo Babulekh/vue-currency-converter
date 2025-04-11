@@ -18,17 +18,15 @@ import { storeToRefs } from 'pinia'
 import { supportedCurrencies } from '@/shared/config'
 import { useCurrencyStore } from '@/entities/currency'
 
-const { currentSelectedCurrency, currenciesExchangeRates } = storeToRefs(useCurrencyStore())
+const { currentSelectedCurrency } = storeToRefs(useCurrencyStore())
+const { getExchangeRate } = useCurrencyStore()
 
 const convertedCurrenciesList = computed<Array<{ id: Currency; convertedValue: number }>>(() =>
   supportedCurrencies
     .filter((currencyName) => currencyName !== currentSelectedCurrency.value)
     .map((currencyName) => ({
       id: currencyName,
-      convertedValue:
-        currenciesExchangeRates.value[
-          `${currencyName}-${currentSelectedCurrency.value}`.toLowerCase()
-        ] ?? 0
+      convertedValue: getExchangeRate(currencyName, currentSelectedCurrency.value)
     }))
 )
 </script>
