@@ -1,10 +1,12 @@
 <template>
-  <nav>
-    <div class="menuItem" v-for="{ name, routeName } in menuList" :key="routeName">
-      <RouterLink :to="{ name: routeName }">
-        {{ name }}
-      </RouterLink>
-    </div>
+  <nav class="menu">
+    <RouterLink
+      v-for="{ name, routeName } in menuList"
+      :key="routeName"
+      class="menuItem"
+      :to="{ name: routeName }">
+      {{ name }}
+    </RouterLink>
   </nav>
 </template>
 
@@ -20,8 +22,26 @@ interface MenuItem {
 
 const menuList: Array<MenuItem> = [
   { name: 'Главная', routeName: routeNames.home },
-  { name: 'Конвертация', routeName: routeNames.converter },
+  { name: 'Конвертация', routeName: routeNames.converter }
 ]
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+.menuItem {
+  padding: 2px 4px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  color: black;
+  text-decoration: none;
+  background: white;
+
+  &.router-link-exact-active {
+    background: gray;
+  }
+}
+</style>
