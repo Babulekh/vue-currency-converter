@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { VHeader } from './Header'
+import { VHeader } from './header'
 </script>
 
 <style lang="scss" scoped>
