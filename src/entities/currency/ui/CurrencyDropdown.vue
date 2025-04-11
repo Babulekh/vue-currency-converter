@@ -10,7 +10,7 @@ import type { Option } from '@/shared/ui/combobox'
 
 import { supportedCurrencies } from '@/shared/config'
 
-import VCombobox from '@/shared/ui/combobox/VCombobox.vue'
+import { VCombobox } from '@/shared/ui/combobox'
 
 const supportedCurrenciesOptions: Array<Option> = supportedCurrencies.map((currencyName) => ({
   id: currencyName,
