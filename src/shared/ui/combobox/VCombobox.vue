@@ -14,6 +14,7 @@
         v-for="{ id, label } in options"
         :key="id"
         class="option"
+        :class="{ selected: selectedOptionId === id }"
         @click="selectOption(id)">
         {{ label }}
       </div>
@@ -92,8 +93,12 @@ onClickOutside(dropdownElement, closeDropdown)
   cursor: pointer;
   user-select: none;
 
-  &:hover {
+  &.selected {
     background: lightblue;
+  }
+
+  &:hover {
+    background: lightcyan;
   }
 }
 </style>

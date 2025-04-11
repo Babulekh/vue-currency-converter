@@ -4,17 +4,13 @@
       <CurrencyInput
         v-model:amount="amountToSend"
         @convert="convertFromSentCurrency" />
-      <CurrencyDropdown
-        v-model:selected-currency="sendCurrencyTicker"
-        @update:selected-currency="convertFromSentCurrency" />
+      <CurrencyDropdown v-model:selected-currency="sendCurrencyTicker" />
     </div>
     <div class="currency">
       <CurrencyInput
         v-model:amount="amountToReceive"
         @convert="convertToSentCurrency" />
-      <CurrencyDropdown
-        v-model:selected-currency="receiveCurrencyTicker"
-        @update:selected-currency="convertToSentCurrency" />
+      <CurrencyDropdown v-model:selected-currency="receiveCurrencyTicker" />
     </div>
   </div>
 </template>
@@ -33,6 +29,18 @@ const { currenciesExchangeRates } = storeToRefs(useCurrencyStore())
 
 const sendCurrencyTicker: Ref<Currency> = ref('USD')
 const receiveCurrencyTicker: Ref<Currency> = ref('RUB')
+watch(
+  [sendCurrencyTicker, receiveCurrencyTicker],
+  ([newTicker1, newTicker2], [oldTicker1, oldTicker2]) => {
+    if (newTicker1 === newTicker2) {
+      sendCurrencyTicker.value = oldTicker1
+      receiveCurrencyTicker.value = oldTicker2
+    } else {
+      if (newTicker1 !== oldTicker1) convertFromSentCurrency()
+      if (newTicker2 !== oldTicker2) convertToSentCurrency()
+    }
+  }
+)
 
 const amountToSend: Ref<string | number> = ref(1000)
 const amountToReceive: Ref<string | number> = ref(0)
@@ -41,7 +49,7 @@ const currentExchangeRate: Ref<number> = computed(() => {
   const currencyPairName =
     `${sendCurrencyTicker.value}-${receiveCurrencyTicker.value}`.toLowerCase()
 
-  return currenciesExchangeRates.value[currencyPairName] ?? 0
+  return currenciesExchangeRates.value[currencyPairName] ?? 1
 })
 
 const formatAmount = (amount: string | number): number => {
