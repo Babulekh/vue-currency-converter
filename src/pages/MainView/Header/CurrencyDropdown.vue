@@ -8,7 +8,8 @@
 import type { Option } from '@/shared/ui/combobox'
 
 import { storeToRefs } from 'pinia'
-import { supportedCurrencies, useCurrencyStore } from '@/entities/currency'
+import { supportedCurrencies } from '@/shared/config'
+import { useCurrencyStore } from '@/entities/currency'
 
 import VCombobox from '@/shared/ui/combobox/VCombobox.vue'
 

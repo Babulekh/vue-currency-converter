@@ -1,5 +1,7 @@
 <template>
-  <div class="dropdown">
+  <div
+    class="dropdown"
+    ref="dropdown">
     <div
       class="value"
       @click="toggleDropdown">
@@ -22,7 +24,8 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 
-import { computed, ref } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
 export interface Option {
   id: string
@@ -39,21 +42,17 @@ const selectedOptionId = defineModel<string>('selectedOptionId', { default: null
 const selectedLabel = computed<string>(
   () => options.find(({ id }) => selectedOptionId.value === id)?.label ?? ''
 )
-
-const isDropdownOpened: Ref<boolean> = ref(false)
-
 const selectOption = (optionId: string) => {
   selectedOptionId.value = optionId
   closeDropdown()
 }
 
-const toggleDropdown = () => {
-  isDropdownOpened.value = !isDropdownOpened.value
-}
+const isDropdownOpened: Ref<boolean> = ref(false)
+const toggleDropdown = () => (isDropdownOpened.value = !isDropdownOpened.value)
+const closeDropdown = () => (isDropdownOpened.value = false)
 
-const closeDropdown = () => {
-  isDropdownOpened.value = false
-}
+const dropdownElement = useTemplateRef<HTMLDivElement>('dropdown')
+onClickOutside(dropdownElement, closeDropdown)
 </script>
 
 <style scoped lang="scss">
