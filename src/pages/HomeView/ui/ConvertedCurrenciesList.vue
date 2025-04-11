@@ -4,7 +4,7 @@
       v-for="{ id, convertedValue } in convertedCurrenciesList"
       :key="id"
       class="currency">
-      {{ id }} - {{ convertedValue.toFixed(3) }} {{ currentSelectedCurrency }}
+      {{ id }} - {{ convertedValue.toFixed(2) }} {{ currentSelectedCurrency }}
     </div>
   </div>
 </template>
