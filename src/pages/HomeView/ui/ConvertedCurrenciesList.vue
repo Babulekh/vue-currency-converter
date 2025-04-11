@@ -4,18 +4,19 @@
       v-for="{ id, convertedValue } in convertedCurrenciesList"
       :key="id"
       class="currency">
-      {{ id }} - {{ convertedValue.toFixed(2) }} {{ currentSelectedCurrency }}
+      {{ id }} - {{ convertedValue.toFixed(3) }} {{ currentSelectedCurrency }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Currency } from '@/entities/currency'
+import type { Currency } from '@/shared/config'
 
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import { supportedCurrencies, useCurrencyStore } from '@/entities/currency'
+import { supportedCurrencies } from '@/shared/config'
+import { useCurrencyStore } from '@/entities/currency'
 
 const { currentSelectedCurrency, currenciesExchangeRates } = storeToRefs(useCurrencyStore())
 

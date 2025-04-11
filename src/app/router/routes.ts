@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import MainView from '@/pages/MainView'
 
-import { routeNames } from '@/shared/config/config'
+import { routeNames } from '@/shared/config'
 
 export const routes: Array<RouteRecordRaw> = [
   {

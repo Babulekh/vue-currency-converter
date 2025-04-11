@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteNames } from '@/shared/config/config'
+import type { RouteNames } from '@/shared/config'
 
-import { routeNames } from '@/shared/config/config'
+import { routeNames } from '@/shared/config'
 
 interface MenuItem {
   name: string
